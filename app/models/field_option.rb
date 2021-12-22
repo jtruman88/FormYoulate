@@ -1,4 +1,5 @@
 class FieldOption < ApplicationRecord
   belongs_to :field
-  has_mnay :answers, through: :field_option_answer
+  has_many :field_option_answers
+  has_many :answers, through: :field_option_answers
 end
