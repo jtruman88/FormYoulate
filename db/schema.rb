@@ -41,26 +41,20 @@ ActiveRecord::Schema.define(version: 2021_12_20_003805) do
 
   create_table "field_types", force: :cascade do |t|
     t.string "name"
+    t.string "view"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "fields", force: :cascade do |t|
     t.string "label"
+    t.integer "form_id", null: false
     t.integer "field_type_id", null: false
     t.boolean "required"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["field_type_id"], name: "index_fields_on_field_type_id"
-  end
-
-  create_table "form_fields", force: :cascade do |t|
-    t.integer "form_id", null: false
-    t.integer "field_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["field_id"], name: "index_form_fields_on_field_id"
-    t.index ["form_id"], name: "index_form_fields_on_form_id"
+    t.index ["form_id"], name: "index_fields_on_form_id"
   end
 
   create_table "forms", force: :cascade do |t|
@@ -83,7 +77,6 @@ ActiveRecord::Schema.define(version: 2021_12_20_003805) do
   add_foreign_key "field_option_answers", "field_options"
   add_foreign_key "field_options", "fields"
   add_foreign_key "fields", "field_types"
-  add_foreign_key "form_fields", "fields"
-  add_foreign_key "form_fields", "forms"
+  add_foreign_key "fields", "forms"
   add_foreign_key "submissions", "forms"
 end

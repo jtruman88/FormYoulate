@@ -1,0 +1,28 @@
+<h1>New Form</h1>
+
+<div>
+  <%= form_with model: @form, method: :post do |form| %>
+    <div>
+      <div style="margin-bottom: 30px">
+        <div>
+          <%= form.label :name, 'Title' %> <br>
+          <%= form.text_field :name %>
+        </div>
+
+        <div>
+          <%= form.label :description, 'Description' %> <br>
+          <%= form.text_field :description %>
+        </div>
+      </div>
+      <div style="margin-bottom: 30px" data-controller="fieldset" data-fieldset-url-value="/field/add">
+        <div data-fieldset-target="container">
+          <div data-controller="field" data-field-update-type-url-value="/field/updateType">
+          </div>
+        </div>
+        <%= button_tag 'Add Question', type: 'button', data: { action: 'fieldset#add' } %>
+      </div>
+      <div>
+        <%= form.submit %>
+      </div>
+  <% end %>
+</div>

@@ -1,0 +1,14 @@
+
+<div data-controller="field" data-field-update-type-url-value="/field/updateType">
+  <div>
+    <label for="fields[][type]">Question Type</label> <br>
+    <select name="fields[][type]" id="fields[][type]" data-field-target="typeSelect" data-action="field#updateType">
+      <% @fieldTypes.each do |type| %>
+        <option value="<%= type.id %>"><%= type.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div data-field-target="type">
+    <%= render 'text' %>
+  </div>
+</div>

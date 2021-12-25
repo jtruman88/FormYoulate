@@ -1,0 +1,40 @@
+<h2><%= @form.name %> (the form to fill out)</h2>
+<h3><%= @form.description %></h3>
+
+<% @form.fields.each do |field| %>
+  <% type = field.field_type.id %>
+  <div>
+    <% if type == FieldType::MULTI_SELECT %>
+      <fieldset>
+        <legend><%= field.label %></legend>
+        <% field.field_options.each do |option| %>
+          <input type="checkbox" name="field<%= idx %>" value="<%= option.id %>" id="field<%= option.id %>">
+          <label for="field<%= option.id %>"><%= option.name %></label><br>
+        <% end %>
+      </fieldset>
+    <% elsif type == FieldType::SINGLE_SELECT %>
+      <fieldset>
+        <legend><%= field.label %></legend>
+        <% field.field_options.each do |option| %>
+          <input type="radio" name="field<%= idx %>" value="<%= option.id %>" id="field<%= option.id %>">
+          <label for="field<%= option.id %>"><%= option.name %></label><br>
+        <% end %>
+      </fieldset>
+    <% else %>
+      <label for="field<%= idx %>"><%= field.label %></label><br>
+      <input type="text" name="field<%= idx %>">
+    <% end %>
+  </div>
+<% end %>
+
+<hr>
+
+<h2>Form Submission - <%= @form.name %></h2>
+
+<% if @form.submissions.any? %>
+  <% @form.submissions.first.answers.each do |answer| %>
+    <% response = answer.field_options.any? ? answer.field_options.map(&:name).join(', ') : answer.text %>
+    <p><%= answer.field.label %></p>
+    <blockquote><%= response %></blockquote>
+  <% end %>
+<% end %>

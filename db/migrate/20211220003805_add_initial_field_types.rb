@@ -1,8 +1,8 @@
 class AddInitialFieldTypes < ActiveRecord::Migration[7.0]
   def up
-    FieldType.create(name: 'text')
-    FieldType.create(name: 'single-select')
-    FieldType.create(name: 'multi-select')
+    FieldType.create(id: 1, name: 'Text', view: 'fieldTypes/text')
+    FieldType.create(id: 2, name: 'Single Select', view: 'fieldTypes/single_select')
+    FieldType.create(id: 3, name: 'Multi Select', view: 'fieldTypes/multi_select')
   end
   
   def down

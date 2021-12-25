@@ -1,0 +1,13 @@
+
+<div
+  data-controller="option-select"
+  data-option-select-url-value="/field/addOption"
+  data-option-select-type-value="<%= @type %>"
+>
+  <%= render 'text' %> <br>
+  <label>Options</label> <br>
+  <div data-option-select-target="container" >
+    <%= render 'option_input'%>
+  </div>
+  <%= button_tag 'Add Option', type: 'button', data: { action: 'option-select#add' } %>
+</div>

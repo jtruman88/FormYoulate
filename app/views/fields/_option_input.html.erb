@@ -1,0 +1,3 @@
+<% input_type = (@type == FieldType::SINGLE_SELECT ? 'radio' : 'checkbox') %>
+<input type="<%= input_type %>" disabled>
+<input type="text" name="fields[][options][]" id="fields[][options][]">

@@ -1,2 +1,9 @@
 <h1>FormYoulate</h1>
 
+<%= link_to 'New Form', new_form_path %>
+
+<ul>
+  <% @forms.each do |form| %>
+    <li><%= link_to form.name, form_path(form) %></li>
+  <% end %>
+</ul>
