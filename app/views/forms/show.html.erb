@@ -1,5 +1,6 @@
 <h2><%= @form.name %></h2>
 <h3><%= @form.description %></h3>
+<%= link_to 'Forms List', forms_path %>
 
 <%= form_with model: @submission, method: :post do |form| %>
   <%= form.hidden_field :form_id, value: @form.id %>
@@ -17,6 +18,6 @@
 <h4>Submitted On:</h4>
 <ul>
   <% @form.submissions.each do |submission| %>
-    <li><%= link_to submission.created_at, submission_path(submission) %></li>
+    <li><%= link_to format_date(submission.created_at), submission_path(submission) %></li>
   <% end %>
 </ul>

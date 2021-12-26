@@ -13,16 +13,7 @@ class FormsController < ApplicationController
   end
 
   def create
-    form = Form.create(form_params)
-    field_params.each do |field|
-      new_field = Field.create(form: form, field_type_id: field[:type], label: field[:label])
-      if field[:options].present?
-        field[:options].each do |option|
-          FieldOption.create(name: option, field: new_field)
-        end
-      end
-    end
-
+    Form.create_from_form(form_params, field_params)
     redirect_to root_path
   end
 
