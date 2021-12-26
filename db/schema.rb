@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_003805) do
+ActiveRecord::Schema.define(version: 2021_12_26_193924) do
 
   create_table "answers", force: :cascade do |t|
     t.string "text"
@@ -62,13 +62,24 @@ ActiveRecord::Schema.define(version: 2021_12_20_003805) do
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_forms_on_user_id"
   end
 
   create_table "submissions", force: :cascade do |t|
     t.integer "form_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
     t.index ["form_id"], name: "index_submissions_on_form_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "answers", "fields"
@@ -78,5 +89,7 @@ ActiveRecord::Schema.define(version: 2021_12_20_003805) do
   add_foreign_key "field_options", "fields"
   add_foreign_key "fields", "field_types"
   add_foreign_key "fields", "forms"
+  add_foreign_key "forms", "users"
   add_foreign_key "submissions", "forms"
+  add_foreign_key "submissions", "users"
 end

@@ -1,0 +1,12 @@
+<% if @user.errors.any? %>
+  <div>
+    <div style="color:red">
+      Please correct the following <%= 'error'.pluralize(@user.errors.count) %>:
+    </div>
+    <ul>
+    <% @user.errors.full_messages.uniq.each do |msg| %>
+      <li style="color:red"><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

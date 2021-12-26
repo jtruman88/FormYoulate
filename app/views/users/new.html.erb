@@ -1,0 +1,19 @@
+<p>Sign Up to start creating and filling out forms!</p>
+<%= link_to 'Back Home', root_path %>
+
+<turbo-frame id="user-form">
+  <%= form_with(model: @user) do |form| %>
+    <%= render 'shared/error_messages' %>
+
+    <%= form.label :username %>
+    <%= form.text_field :username %> <br>
+
+    <%= form.label :password %>
+    <%= form.password_field :password %> <br>
+
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %> <br>
+
+    <%= form.submit "Create Account" %>
+  <% end %>
+</turbo-frame>

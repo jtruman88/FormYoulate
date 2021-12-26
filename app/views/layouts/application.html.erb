@@ -11,6 +11,10 @@
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <% text_color = (type == :success ? 'green' : 'red') %>
+      <div style="color:<%= text_color %>"><%= message %></div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

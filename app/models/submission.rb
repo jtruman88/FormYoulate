@@ -1,5 +1,6 @@
 class Submission < ApplicationRecord
   belongs_to :form
+  belongs_to :user
   has_many :answers
 
   # Creates a new Submission along with the associated Answers and FieldOptionAnswers

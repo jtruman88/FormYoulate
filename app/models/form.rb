@@ -1,4 +1,5 @@
 class Form < ApplicationRecord
+  belongs_to :user
   has_many :submissions
   has_many :fields
 
