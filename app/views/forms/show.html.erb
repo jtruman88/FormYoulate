@@ -1,6 +1,9 @@
-<h2><%= @form.name %></h2>
+<% title = (current_user.owns_form?(@form) ? "#{@form.name} (preview)" : @form.name) %>
+<h2><%= title %></h2>
 <h3><%= @form.description %></h3>
-<%= link_to 'Forms List', forms_path %>
+<% unless current_user.owns_form?(@form) %>
+  <p>Created by <%= @form.user.username %></p>
+<% end %>
 
 <%= form_with model: @submission, method: :post do |form| %>
   <%= form.hidden_field :form_id, value: @form.id %>
@@ -8,16 +11,21 @@
     <% view = field.field_type.view %>
     <%= render view, field: field %>
   <% end %>
-  <%= form.submit 'Submit Answers' %>
+  <% unless current_user.owns_form?(@form) %>
+    <%= form.submit 'Submit Answers' %>
+  <% end %>
 <% end %>
 
-<hr>
+<% if current_user.owns_form?(@form) %>
+  <h2>Submissions</h2>
 
-<h2>Submissions</h2>
-
-<h4>Submitted On:</h4>
-<ul>
-  <% @form.submissions.each do |submission| %>
-    <li><%= link_to format_date(submission.created_at), submission_path(submission) %></li>
+  <% if @form.submissions.any? %>
+    <ul>
+      <% @form.submissions.each do |submission| %>
+        <li><%= link_to "#{submission.user.username} submitted on #{format_date(submission.created_at)}", submission_path(submission) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Looks like no one has filled this form out yet.</p>
   <% end %>
-</ul>
+<% end %>

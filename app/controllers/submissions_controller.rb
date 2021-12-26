@@ -1,11 +1,13 @@
 class SubmissionsController < ApplicationController
+  before_action :logged_in_user
+
   def show
     @submission = Submission.find(params[:id])
   end
 
   def create
-    submission = Submission.create_from_form(submission_params, answer_params)
-    redirect_to form_path(submission.form)
+    submission = Submission.create_from_form(submission_params, answer_params, current_user)
+    redirect_to forms_path
   end
 
   private

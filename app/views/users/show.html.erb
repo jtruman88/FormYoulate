@@ -1,1 +1,25 @@
-<h2><%= "#{@user.username}'s Forms" %></h2>
+<h2><%= "#{@user.username}'s Published Forms" %></h2>
+
+<% if @user.forms.any? %>
+  <ul>
+    <% @user.forms.each do |form| %>
+      <li><%= link_to form.name, form_path(form) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have not published any forms.</p>
+  <p><%= link_to 'Create one now!', new_form_path %></p>
+<% end %>
+
+<h2><%= "#{@user.username}'s Submitted Forms" %></h2>
+
+<% if @user.submissions.any? %>
+  <ul>
+    <% @user.submissions.each do |submission| %>
+      <li><%= link_to submission.form.name, submission_path(submission) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You have not submitted any forms.</p>
+  <p><%= link_to 'Find some now!', forms_path %></p>
+<% end %>

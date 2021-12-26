@@ -1,9 +1,12 @@
-<h1>FormYoulate</h1>
+<p>Fill out some forms created by other FormYoulaters!</p>
+<p>Or, Create your own <%= link_to 'here!', new_form_path %></p>
 
-<%= link_to 'New Form', new_form_path %>
-
-<ul>
-  <% @forms.each do |form| %>
-    <li><%= link_to form.name, form_path(form) %></li>
-  <% end %>
-</ul>
+<% if @forms.any? %>
+  <ul>
+    <% @forms.each do |form| %>
+      <li><%= link_to form.name, form_path(form) %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Hmm... looks like no one has made any forms yet</p>
+<% end %>

@@ -1,12 +1,9 @@
 <h2><%= @submission.form.name %></h2>
 <h4><%= @submission.form.description %></h4>
-<p><b>Submitted on:</b> <%= format_date(@submission.created_at) %></p>
+<p><b>Submitted by:</b> <%= @submission.user.username %> on <%= format_date(@submission.created_at) %></p>
 
 <% @submission.answers.each do |answer| %>
   <% response = answer.field_options.any? ? answer.field_options.map(&:name).join(', ') : answer.text %>
   <p><%= answer.field.label %></p>
   <blockquote><%= response %></blockquote>
 <% end %>
-
-<%= link_to 'Forms List', forms_path %>
-<%= link_to 'Back to Form', form_path(@submission.form) %>
