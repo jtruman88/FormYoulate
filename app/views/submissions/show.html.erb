@@ -1,0 +1,9 @@
+<h2><%= @submission.form.name %></h2>
+<h4><%= @submission.form.description %></h4>
+<p>Submitted on <%= @submission.created_at %></p>
+
+<% @submission.answers.each do |answer| %>
+  <% response = answer.field_options.any? ? answer.field_options.map(&:name).join(', ') : answer.text %>
+  <p><%= answer.field.label %></p>
+  <blockquote><%= response %></blockquote>
+<% end %>

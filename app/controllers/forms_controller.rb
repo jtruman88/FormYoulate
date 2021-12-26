@@ -5,6 +5,7 @@ class FormsController < ApplicationController
 
   def show
     @form = Form.find(params[:id])
+    @submission = Submission.new
   end
 
   def new

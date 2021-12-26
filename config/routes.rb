@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "forms#index"
 
   resources :forms
+  resources :submissions
 
   get '/field/add', to: 'fields#add'
   get '/field/updateType', to: 'fields#updateType'

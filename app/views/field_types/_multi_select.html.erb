@@ -1,0 +1,10 @@
+<fieldset>
+  <input type="hidden" name="answers[][field_id]" value="<%= field.id %>">
+  <legend>
+    <label for="answers[][options]"><%= field.label %></label>
+  </legend>
+  <% field.field_options.each do |option| %>
+    <input type="checkbox" name="answers[][options][]" id="answers[][options][]_<%= option.id %>" value="<%= option.id %>">
+    <label for="answers[][options][]_<%= option.id %>"><%= option.name %></label> <br>
+  <% end %>
+</fieldset>
