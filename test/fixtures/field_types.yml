@@ -1,7 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
+text:
+  id: 1
+  name: 'Text'
 
-two:
-  name: MyString
+single_select:
+  id: 2
+  name: 'Single Select'
+
+multi_select:
+  id: 3
+  name: 'Multi Select'

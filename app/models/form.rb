@@ -14,7 +14,7 @@ class Form < ApplicationRecord
   # @param form_params [ActionController::Parameters] the form data submitted from the new form form
   # @param field_params [Array<ActionController::Parameters>] array of field data submitted from the new form form
   # @param user [User] The user creating the form
-  # @return [nil] 
+  # @return [Form] the form created
   def self.create_from_form(form_params, field_params, user)
     form = user.forms.build(form_params)
     form.save
@@ -26,5 +26,7 @@ class Form < ApplicationRecord
         end
       end
     end
+
+    form
   end
 end
